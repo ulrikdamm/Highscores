@@ -1,26 +1,21 @@
 import FluentSQLite
 import Vapor
 
-/// A single entry of a Todo list.
-final class Todo: SQLiteModel {
-    /// The unique identifier for this `Todo`.
+final class ScoreEntry: SQLiteModel {
     var id: Int?
 
-    /// A title describing what this `Todo` entails.
-    var title: String
-
-    /// Creates a new `Todo`.
-    init(id: Int? = nil, title: String) {
+	var score : Int
+	var name : String
+	var uniqueId : Int
+	
+	init(id: Int? = nil, score : Int, name : String, uniqueId : Int) {
         self.id = id
-        self.title = title
+        self.score = score
+		self.name = name
+		self.uniqueId = uniqueId
     }
 }
 
-/// Allows `Todo` to be used as a dynamic migration.
-extension Todo: Migration { }
-
-/// Allows `Todo` to be encoded to and decoded from HTTP messages.
-extension Todo: Content { }
-
-/// Allows `Todo` to be used as a dynamic parameter in route definitions.
-extension Todo: Parameter { }
+extension ScoreEntry: Migration { }
+extension ScoreEntry: Content { }
+extension ScoreEntry: Parameter { }

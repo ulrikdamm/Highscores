@@ -2,6 +2,7 @@ import FluentSQLite
 import Vapor
 
 /// Called before your application initializes.
+@available(OSX 10.12, *)
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     /// Register providers first
     try services.register(FluentSQLiteProvider())
@@ -27,7 +28,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
 
     /// Configure migrations
     var migrations = MigrationConfig()
-    migrations.add(model: Todo.self, database: .sqlite)
+    migrations.add(model: ScoreEntry.self, database: .sqlite)
     services.register(migrations)
 
 }
